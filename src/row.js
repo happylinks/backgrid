@@ -17,7 +17,10 @@
 var Row = Backgrid.Row = Backbone.View.extend({
 
   /** @property */
-  tagName: "tr",
+  tagName: 'tr',
+  events: {
+    'click': 'onClick',
+  },
 
   /**
      Initializes a row view instance.
@@ -104,13 +107,18 @@ var Row = Backgrid.Row = Backbone.View.extend({
 
      @chainable
   */
-  remove: function () {
+  remove: function() {
     for (var i = 0; i < this.cells.length; i++) {
       var cell = this.cells[i];
       cell.remove.apply(cell, arguments);
     }
+
     return Backbone.View.prototype.remove.apply(this, arguments);
-  }
+  },
+
+  onClick: function() {
+    this.model.collection.trigger('click', this.model);
+  },
 
 });
 
