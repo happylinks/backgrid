@@ -117,7 +117,9 @@ var Row = Backgrid.Row = Backbone.View.extend({
   },
 
   onClick: function() {
-    this.model.collection.trigger('click', this.model);
+    if(this.model && this.model.collection){
+        this.model.collection.trigger('click', this.model);
+    }
   },
 
 });
