@@ -117,9 +117,9 @@ var Row = Backgrid.Row = Backbone.View.extend({
   },
 
   onClick: function(e) {
-    if(this.model && this.model.collection){
-      if(e.target !== 'checkbox') {
-        this.model.collection.trigger('click', this.model);
+    if(e.target.type !== "checkbox") {
+      if(this.model && this.model.collection){
+        this.model.collection.trigger("click", this.model);
       }
     }
   },
